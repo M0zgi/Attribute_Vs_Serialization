@@ -1,11 +1,9 @@
 ﻿using Attribute_Vs_Serialization.Attributes;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Attribute_Vs_Serialization.Entities
 {
@@ -14,13 +12,15 @@ namespace Attribute_Vs_Serialization.Entities
     {
         [Params("name.ini", "date.ini", "salary.ini")]
         
+        //имена файлов для считывания данных для свойств
         public string fname { get; set; }
         public string fdate { get; set; }
         public string fsalary { get; set; }
 
 
+        //свойства объекта
         public string name { get; set; }
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public int salary { get; set; }
 
         //быстрая версия проверки работы атрибутов, создание сущности с заранее созданными файлами и данными в них
@@ -37,12 +37,12 @@ namespace Attribute_Vs_Serialization.Entities
                 break;
             }
 
-            
+
             using (FileStream fs = new FileStream(fname, FileMode.Open))
             {
                 using (StreamReader sr = new StreamReader(fs, Encoding.Unicode))
                 {
-                    name = sr.ReadToEnd();
+                    name = sr.ReadLine();
                 }
             }
 
@@ -50,7 +50,7 @@ namespace Attribute_Vs_Serialization.Entities
             {
                 using (StreamReader sr = new StreamReader(fs, Encoding.Unicode))
                 {
-                    date = sr.ReadToEnd();
+                    date = DateTime.Parse(sr.ReadLine());
                 }
             }
 
@@ -58,10 +58,9 @@ namespace Attribute_Vs_Serialization.Entities
             {
                 using (StreamReader sr = new StreamReader(fs, Encoding.Unicode))
                 {
-                    salary = int.Parse(sr.ReadToEnd().ToString());
+                    salary = int.Parse(sr.ReadLine());
                 }
             }
-
         }
         public override string ToString()
         {
