@@ -34,9 +34,17 @@ namespace Attribute_Vs_Serialization.Attributes
         public ParamsAttribute() { }
         public ParamsAttribute(string name, string date, string salary)
         {
-            this.fName = name;
-            this.fDate = date;
-            this.fSalary = salary;
+            try
+            {
+                fName = name;
+                fDate = date;
+                fSalary = salary;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public override string ToString()

@@ -23,13 +23,13 @@ namespace Attribute_Vs_Serialization.Entities
         public string date { get; set; }
         public int salary { get; set; }
 
+        //быстрая версия проверки работы атрибутов, создание сущности с заранее созданными файлами и данными в них
         public Coder()
         {
             var properties = typeof(Coder).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
             foreach (var property in properties)
             {
-
                 var attribute = property.GetCustomAttribute<ParamsAttribute>();
                 fname = attribute.Name;
                 fdate = attribute.Date;
