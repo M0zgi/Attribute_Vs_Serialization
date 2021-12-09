@@ -71,7 +71,6 @@ namespace Attribute_Vs_Serialization
             }
 
             #endregion
-
         }
     }
 }
